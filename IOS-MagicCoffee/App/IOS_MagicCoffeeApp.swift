@@ -11,7 +11,7 @@ import SwiftUI
 struct IOS_MagicCoffeeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ThumbView()
         }
     }
 }

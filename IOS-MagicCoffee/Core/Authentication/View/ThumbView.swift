@@ -8,19 +8,33 @@
 import SwiftUI
 
 struct ThumbView: View {
+    
+    @State private var intializeOpen = true
+    
     var body: some View {
         NavigationStack{
-            ZStack{
-                Image("Thumb2")
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            if intializeOpen {
+                ZStack{
+                    Image("Thumb2")
+                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                        
+                    Image("Vector")
+                        .padding(.top, -200)
                     
-                Image("Vector")
-                    .padding(.top, -200)
-                
-                Image("Magic Coffee")
-                    .padding(.top, -100)
+                    Image("Magic Coffee")
+                        .padding(.top, -100)
+                }
+                .onAppear{
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3){
+                        withAnimation{
+                            intializeOpen = false
+                        }
+                    }
+                }
+                .navigationBarBackButtonHidden(true)
+            } else {
+                MapView()
             }
-            .navigationBarBackButtonHidden(true)
         }
     }
 }
